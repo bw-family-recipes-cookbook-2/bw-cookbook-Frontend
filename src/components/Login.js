@@ -42,25 +42,6 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
-  const [login, setLogin] = useState([
-      {
-          email: "",
-          password: ""
-      }
-  ])
-
-  const handleChanges = e => {
-      setLogin({...login, [e.target.name]: e.target.value})
-      console.log(login)
-  }
-
-  const submitForm = e => {
-    e.preventDefault();  
-    setLogin(login)
-    console.log("1st time", login)
-    setLogin({email: "", password: ""})
-    console.log("2nd time ", login)
-  }
 
   return (
     <Container component="main" maxWidth="xs">

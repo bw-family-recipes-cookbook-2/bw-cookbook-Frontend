@@ -42,6 +42,7 @@ function Copyright() {
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+      backgroundColor: "green"
     },
 
   }));
@@ -50,28 +51,6 @@ function Copyright() {
 function SignUp() {
 
     const classes = useStyles();
-
-    const [newMember, setNewMemeber] = useState([
-        {
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: ""
-        }
-    ])
-    
-    const handleChanges = e => {
-        setNewMemeber({ ...newMember, [e.target.name]: e.target.value})
-        console.log(newMember)
-    }
-    
-    const submitForm = e => {
-        e.preventDefault();
-        setNewMemeber(newMember);
-        console.log("1st time ",newMember)
-        setNewMemeber({firstName: "", lastName: "", email: "", password: ""} )
-        console.log("2nd time ",newMember)
-    }
 
   return (
     <Container component="main" maxWidth="xs">
