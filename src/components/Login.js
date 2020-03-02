@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Image from '../Images/BackgroundImg.jpg';
 
 function Copyright() {
   return (
@@ -20,6 +21,16 @@ function Copyright() {
 }
 
 const useStyles = makeStyles(theme => ({
+  flex: {
+    display: "flex",
+    justifyContent: "center",
+},
+background: {
+    backgroundImage:`url(${Image})`,
+    height: "100vh",
+    width: "50%",
+    backgroundSize: "cover",
+},
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -44,6 +55,8 @@ export default function SignIn() {
 
 
   return (
+    <div className={classes.flex}>
+    <div className={classes.background}>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -100,5 +113,7 @@ export default function SignIn() {
         <Copyright />
       </Box>
     </Container>
+    </div>
+    </div>
   );
 }
