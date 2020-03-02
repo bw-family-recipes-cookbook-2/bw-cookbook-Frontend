@@ -1,15 +1,18 @@
 import axiosWithAuth from '../utils/AxiosWithAuth';
 
-export const FETCH_POKEMON_START = 'FETCH_POKEMON_START';
-export const FETCH_POKEMON_SUCCESS = "FETCH_POKEMON_SUCCESS";
-export const FETCH_POKEMON_FAIL = 'FETCH_POKEMON_FAIL';
+export const FETCH_LOGIN_START = 'FETCH_LOGIN_START';
+export const FETCH_LOGIN_SUCCESS = "FETCH_LOGIN_SUCCESS";
+export const FETCH_LOGIN_FAIL = 'FETCH_LOGIN_FAIL';
 
-export const getPokemon = () => dispatch => {
-    dispatch({ type: FETCH_POKEMON_START });
+export const getLogin = info => dispatch => {
+    dispatch({ type: FETCH_LOGIN_START });
     axiosWithAuth()
-                .get('pokemon/')
-                .then(res => 
-                    dispatch ({type: FETCH_POKEMON_SUCCESS, payload: res.data.results})
-                )
-                .catch(err => dispatch({ type: FETCH_POKEMON_FAIL, payload: err}));
+                .post('api/auth/login', info)
+                .then(res => {
+                    dispatch ({type: FETCH_LOGIN_SUCCESS, payload: res.data});
+                    localStorage.setItem('this is the token', res.data.token);
+                    // localStorage.setItem('this is the messge', res.data.message);
+                    console.log('this is from loginAction', res.data);
+})
+                .catch(err => dispatch({ type: FETCH_LOGIN_FAIL, payload: err}));
 };
