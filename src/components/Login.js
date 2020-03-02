@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -42,6 +42,26 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const [login, setLogin] = useState([
+      {
+          email: "",
+          password: ""
+      }
+  ])
+
+  const handleChanges = e => {
+      setLogin({...login, [e.target.name]: e.target.value})
+      console.log(login)
+  }
+
+  const submitForm = e => {
+    e.preventDefault();  
+    setLogin(login)
+    console.log("1st time", login)
+    setLogin({email: "", password: ""})
+    console.log("2nd time ", login)
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -52,7 +72,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={submitForm}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -63,6 +83,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChanges}
+            value={login.email}
           />
           <TextField
             variant="outlined"
@@ -74,6 +96,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleChanges}
+            value={login.password}
           />
           <Button
             type="submit"
