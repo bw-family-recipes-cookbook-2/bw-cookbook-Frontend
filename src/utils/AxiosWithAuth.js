@@ -4,7 +4,7 @@ const AxiosWithAuth = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
-    baseURL: "https://thereportoftheweek-api.herokuapp.com/reports",
+    baseURL: "https://pokeapi.co/api/v2/",
     headers: {
       Authorization: token
     }
