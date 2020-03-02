@@ -55,7 +55,7 @@ function Copyright() {
   }));
 
 
-function SignUp() {
+function Register() {
 
     const classes = useStyles();
 
@@ -142,4 +142,4 @@ function SignUp() {
 
 }
 
-export default SignUp;
+export default Register;

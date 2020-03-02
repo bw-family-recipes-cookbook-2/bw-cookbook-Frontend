@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 //components
-import SignUp from "./components/SignUp"
+import SignUp from "./components/Registerer"
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Card from "./components/Card";
@@ -17,7 +17,7 @@ function App() {
         <Switch>
 
           <Route exact path="/">
-            <SignUp />
+            <Register />
           </Route>
 
           <Route exact path="/login">
