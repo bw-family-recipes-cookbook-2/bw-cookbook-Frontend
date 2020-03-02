@@ -16,12 +16,7 @@ import Container from '@material-ui/core/Container';
 function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{' '}
-        {2020}
-        {'.'}
+        {'Copyright © BWFRC2 2020'}
       </Typography>
     );
   }
