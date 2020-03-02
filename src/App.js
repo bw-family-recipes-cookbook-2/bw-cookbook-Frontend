@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp"
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Card from "./components/Card";
+import NavBar from "./components/NavBar"
 //router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -21,6 +22,10 @@ function App() {
 
           <Route exact path="/login">
             <Login />
+          </Route>
+
+          <Route exact path="/navbar">
+            <NavBar />
           </Route>
 
           <Route exact path="dashboard">
