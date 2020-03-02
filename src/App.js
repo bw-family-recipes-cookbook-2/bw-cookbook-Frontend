@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 //components
+import SignUp from "./components/SignUp"
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Card from "./components/Card";
@@ -13,7 +14,12 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+
           <Route exact path="/">
+            <SignUp />
+          </Route>
+
+          <Route exact path="/login">
             <Login />
             <Dashboard/>
           </Route>

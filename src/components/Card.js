@@ -10,17 +10,9 @@ const Card = props => {
   };
 
   return (
-    <>
-      <h2>Welcome to Pokémon World!</h2>
-      {props.isFetching && <p>Fetching your Pokémon</p>}
-      <div>
-        {props.pokemon.map(pokemon => (
-          <h4 key={pokemon.url}>{pokemon.name}</h4>
-        ))}
-      </div>
-      {props.error && <p className="error">{props.error}</p>}
-      <button onClick={fetchPokemon}>Fetch Pokemon!</button>
-    </>
+    <div>
+      <h1>Hello World</h1>
+    </div>
   );
 };
 
