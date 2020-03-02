@@ -62,7 +62,7 @@ function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitForm}>
+        <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -74,8 +74,6 @@ function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                onChange={handleChanges}
-                value={newMember.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -87,8 +85,7 @@ function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={handleChanges}
-                value={newMember.lastName}
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,8 +97,7 @@ function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={handleChanges}
-                value={newMember.email}
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -114,8 +110,7 @@ function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={handleChanges}
-                value={newMember.password}
+
               />
             </Grid>
 

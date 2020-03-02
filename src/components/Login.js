@@ -53,7 +53,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitForm}>
+        <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -64,8 +64,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={handleChanges}
-            value={login.email}
+
           />
           <TextField
             variant="outlined"
@@ -77,8 +76,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={handleChanges}
-            value={login.password}
+
           />
           <Button
             type="submit"
