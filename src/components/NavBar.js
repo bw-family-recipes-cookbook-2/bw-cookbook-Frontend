@@ -87,7 +87,7 @@ export default function PrimarySearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Link href="" className={classes.title} variant="h6" className={classes.link}>
+          <Link href="/dashboard" className={classes.title} variant="h6" className={classes.link}>
               Go To Your Recipes
           </Link>
         </Toolbar>

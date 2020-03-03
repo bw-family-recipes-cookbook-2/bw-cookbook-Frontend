@@ -5,8 +5,10 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 
-// import Card from "./components/Card";
+import RecipeCard from "./components/Card";
 import NavBar from "./components/NavBar";
+import RecipeForm from "./components/RecipeForm"
+
 
 //router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -28,7 +30,13 @@ function App() {
           <Route exact path="/navbar">
             <NavBar />
           </Route>
+          <Route exact path="/card">
+            <RecipeCard />
+          </Route>
 
+          <Route exact path="/rform">
+            <RecipeForm />
+          </Route>
 
           <PrivateRoute exact path="/dashboard">
             <Dashboard />
