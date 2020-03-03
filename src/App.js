@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 //components
-import SignUp from "./components/Registerer"
+import Register from "./components/Register"
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Card from "./components/Card";
