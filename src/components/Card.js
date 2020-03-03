@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function RecipeCard() {
+export default function RecipeCard(props) {
   const classes = useStyles();
   
 
@@ -32,19 +32,19 @@ export default function RecipeCard() {
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Title: 
+          Title: {props.rec.name}
         </Typography>
         <Typography variant="h5" component="h2">
-          Source: 
+          Source: {props.rec.source}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Ingredients:
+          Ingredients: {props.rec.ingredients}
         </Typography>
         <Typography variant="body2" component="p">
-          Instructions:
+          Instructions: {props.rec.instructions}
         </Typography>
         <Typography variant="body2" component="p">
-          Categories:
+          Categories: {props.rec.category}
         </Typography>
       </CardContent>
       <CardActions>
