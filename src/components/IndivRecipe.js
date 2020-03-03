@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 });
 
 
-const RecipeForm= (props) => {
+function IndivRecipe (props) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -124,10 +124,4 @@ const RecipeForm= (props) => {
   );
 }
 
-const mapStateToProps = state => {
-    return state;
-  };
-  export default connect(mapStateToProps, { createRecipe })(RecipeForm);
-
-
-
+export default IndivRecipe

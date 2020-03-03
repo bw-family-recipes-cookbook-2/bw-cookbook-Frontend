@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
   flex: {
-    width: "100%",
     display: "flex",
     flexWrap: "wrap",
   },

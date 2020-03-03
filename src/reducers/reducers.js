@@ -1,4 +1,5 @@
 import { UPDATE_TITLE } from "../actions/actions";
+import {CREATE_RECIPE_START, CREATE_RECIPE_FAILURE, CREATE_RECIPE_SUCCESS} from '../actions/CreateExercise'
 import {
   FETCH_LOGIN_START,
   FETCH_LOGIN_SUCCESS,
@@ -18,7 +19,10 @@ const initialState = {
     username: "",
     password: "",
     id: 0
-  }
+  },
+  userRecipe: [], 
+  isLoading: false,
+  recipes: [],
 };
 export const reducers = (state = initialState, action) => {
   switch (action.type) {
@@ -67,6 +71,23 @@ export const reducers = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: ""
+      };
+    case CREATE_RECIPE_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+      case CREATE_RECIPE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        userRecipe: action.payload,
+      };
+    case CREATE_RECIPE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
       };
     default:
       return state;
