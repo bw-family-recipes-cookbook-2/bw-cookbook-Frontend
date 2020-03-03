@@ -1,13 +1,58 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-const Card = props => {
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
+
+export default function RecipeCard() {
+  const classes = useStyles();
+  
 
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <Typography className={classes.title} color="textSecondary" gutterBottom>
+          Title: 
+        </Typography>
+        <Typography variant="h5" component="h2">
+          Source: 
+        </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          Ingredients:
+        </Typography>
+        <Typography variant="body2" component="p">
+          Instructions:
+        </Typography>
+        <Typography variant="body2" component="p">
+          Categories:
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="medium">Edit</Button>
+      </CardActions>
+      <CardActions>
+        <Button size="medium">Delete</Button>
+      </CardActions>
+    </Card>
   );
-};
-
-export default Card
+}
