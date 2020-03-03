@@ -7,6 +7,7 @@ import Login from "./components/Login";
 
 import RecipeCard from "./components/Card";
 import NavBar from "./components/NavBar";
+import RecipeForm from "./components/RecipeForm"
 
 
 //router
@@ -31,6 +32,10 @@ function App() {
           </Route>
           <Route exact path="/card">
             <RecipeCard />
+          </Route>
+
+          <Route exact path="/rform">
+            <RecipeForm />
           </Route>
 
           <PrivateRoute exact path="/dashboard">
