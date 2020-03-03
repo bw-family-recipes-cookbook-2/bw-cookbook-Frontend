@@ -1,9 +1,12 @@
+import {useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {register} from '../actions/RegisterAction';
+
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -55,15 +58,34 @@ function Copyright() {
   }));
 
 
-function Register() {
+  const Register = props => {
 
     const classes = useStyles();
-
+    const history = useHistory();
+    const [user, setUser] = useState ({
+        username:'',
+        password:'',
+    });
+    console.log('this is user', user)
+    ;
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.register(user);
+        history.push('/');
+    };
+    
+    const handleChanges = e => {
+        e.preventDefault();
+        setUser({
+            ...user,
+            [e.target.name] : e.target.value
+        });
+    }
   return (
     <div className={classes.flex}>
     <div className={classes.background}>
         <Container component="main" maxWidth="xs">
-        <CssBaseline class/>
+        <CssBaseline />
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -71,7 +93,7 @@ function Register() {
             <Typography component="h1" variant="h5">
             Sign up
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <Grid container spacing={2}>
                 
                 <Grid item xs={12}>
@@ -82,6 +104,8 @@ function Register() {
                     id="userName"
                     label="User Name"
                     name="userName"
+                    value={user.username}
+                    onChange={handleChanges}
                     autoComplete="uname"
 
                 />
@@ -107,6 +131,8 @@ function Register() {
                     label="Password"
                     type="password"
                     id="password"
+                    value={user.username}
+                    onChange={handleChanges}
                     autoComplete="current-password"
 
                 />
@@ -140,6 +166,8 @@ function Register() {
   );
 
 
-}
-
-export default Register;
+};
+const mapStateToProps = state => {
+    return state;
+};
+export default connect(mapStateToProps, {register})(Register);
