@@ -1,5 +1,5 @@
 import { UPDATE_TITLE } from "../actions/actions";
-import {CREATE_RECIPE_START, CREATE_RECIPE_FAILURE, CREATE_RECIPE_SUCCESS} from '../actions/CreateExercise'
+import {CREATE_RECIPE_START, CREATE_RECIPE_FAILURE, CREATE_RECIPE_SUCCESS} from '../actions/CreateRecipe'
 import {
   FETCH_LOGIN_START,
   FETCH_LOGIN_SUCCESS,
@@ -18,6 +18,7 @@ const initialState = {
   userInfo: {
     username: "",
     password: "",
+    email:"",
     id: 0
   },
   userRecipe: [], 
@@ -42,14 +43,15 @@ export const reducers = (state = initialState, action) => {
     case FETCH_LOGIN_SUCCESS:
       return {
         ...state,
+        isLoading: false,
         userInfo: action.payload,
-        isLoading: true,
         // isFetching: false,
         error: ""
       };
     case FETCH_LOGIN_FAIL:
       return {
         ...state,
+        isLoading:false,
         error: action.payload
       };
     //register
@@ -62,7 +64,7 @@ export const reducers = (state = initialState, action) => {
     case REGISTER_SUCCESS:
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
         userInfo: action.payload,
         error: ""
       };

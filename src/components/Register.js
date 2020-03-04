@@ -65,6 +65,7 @@ function Copyright() {
     const [user, setUser] = useState ({
         username:'',
         password:'',
+        email:'',
     });
     console.log('this is user', user)
     ;
@@ -101,9 +102,9 @@ function Copyright() {
                     variant="outlined"
                     required
                     fullWidth
-                    id="userName"
-                    label="User Name"
-                    name="userName"
+                    id="username"
+                    label="username"
+                    name="username"
                     value={user.username}
                     onChange={handleChanges}
                     autoComplete="uname"
@@ -116,10 +117,11 @@ function Copyright() {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label="email"
                     name="email"
                     autoComplete="email"
-
+                    value={user.email}
+                    onChange={handleChanges}
                 />
                 </Grid>
                 <Grid item xs={12}>
@@ -128,10 +130,10 @@ function Copyright() {
                     required
                     fullWidth
                     name="password"
-                    label="Password"
+                    label="password"
                     type="password"
                     id="password"
-                    value={user.username}
+                    value={user.password}
                     onChange={handleChanges}
                     autoComplete="current-password"
 

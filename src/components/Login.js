@@ -12,11 +12,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Image from "../Images/BackgroundImg.jpg";
 
-// import axiosWithAuth from "../utils/AxiosWithAuth";
+import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { useHistory } from "react-router-dom";
 // import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { getLogin } from "../actions/LoginAction";
+// import { connect } from "react-redux";
+// import { getLogin } from "../actions/LoginAction";
 
 function Copyright() {
   return (
@@ -57,25 +57,59 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Login = props => {
-  const classes = useStyles();
   const history = useHistory();
-  const [user, setUser] = useState({
+  const classes = useStyles();
+  const [credentials, setCredentials] = useState({
     username: "",
-    password: ""
+    password: "",
+    email:"",
   });
-
   const handleChanges = e => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    });
+    let name = e.target.name;
+    setCredentials({ ...credentials, [name]: e.target.value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.getLogin(user);
-    history.push("/dashboard");
+    AxiosWithAuth()
+      .post("api/auth/login", credentials)
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("message", res.data.message);
+        localStorage.setItem("user id", res.data.id);
+        history.push("/dashboard");
+      })
+      .catch(err => console.log(err));
   };
+  // const handleChanges = e => {
+  //   console.log('this is the sign in',user)
+  //   setUser({
+  //     ...user,
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   props.getLogin(user);
+  //   history.push("/dashboard");
+  // };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   // console.log('this is the submit', user)
+  //   AxiosWithAuth()
+  //       .post('api/auth/login', user)
+  //       .then(res => {
+  //         localStorage.setItem('token', res.data.token)
+  //         localStorage.setItem('message', res.data.message);
+  //         // localStorage.setItem('token', res.data.payload)
+
+  //         history.push("/dashboard");
+  //       })
+  //       .catch(err => console.log("this is an err", err))
+  // };
 
   return (
     <div className={classes.flex}>
@@ -89,18 +123,31 @@ const Login = props => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="userName"
-                label="User Name"
-                name="userName"
+                id="username"
+                label="username"
+                name="username"
                 autoComplete="uname"
-                value={user.username}
-                onChange={handleChanges}
+                value={credentials.username}
+              onChange={handleChanges}
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="email"
+                name="email"
+                autoComplete="email"
+                value={credentials.email}
+              onChange={handleChanges}
                 autoFocus
               />
               <TextField
@@ -112,11 +159,12 @@ const Login = props => {
                 label="Password"
                 type="password"
                 id="password"
-                value={user.password}
-                onChange={handleChanges}
+                value={credentials.password}
+              onChange={handleChanges}
                 autoComplete="current-password"
               />
               <Button 
+              
                 type="submit"
                 fullWidth
                 variant="contained"
@@ -142,8 +190,9 @@ const Login = props => {
     </div>
   );
 };
-const mapStateToProps = state => {
-  return state;
-};
+// const mapStateToProps = state => {
+//   return state;
+// };
 
-export default connect(mapStateToProps, { getLogin })(Login);
+// export default connect(mapStateToProps, { getLogin })(Login);
+export default Login;
