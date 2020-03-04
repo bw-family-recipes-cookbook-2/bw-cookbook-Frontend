@@ -16,7 +16,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   return (
-    <Router>
+   
       <div className="App">
         <Switch>
           <Route exact path="/">
@@ -43,7 +43,7 @@ function App() {
           </PrivateRoute>
         </Switch>
       </div>
-    </Router>
+    
   );
 }
 
