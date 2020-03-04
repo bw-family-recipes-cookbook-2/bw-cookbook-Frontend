@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { Link, useHistory, useParams } from "react-router-dom";
+import AxiosWithAuth from '../utils/AxiosWithAuth';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -32,9 +34,30 @@ const useStyles = makeStyles({
 });
 
 
-export default function RecipeCard(props) {
+export default function RecipeCard({e, props}) {
   const classes = useStyles();
-  
+  const [secretRecipe, setSecretRecipe] = useState({})
+  const history = useHistory();
+  const {id} = useParams ();
+  console.log('this is props from caard', e);
+  // useEffect(() => {
+  //   AxiosWithAuth()
+
+  // })
+  const handleDelete = event => {
+    // event.preventDefault();
+    const userId  = localStorage.getItem("user_id")
+  // const idNum = parseInt(userId);  
+    AxiosWithAuth()
+    .delete(`api/recipes/${e.id}`)
+    .then(() => {
+      history.push('/dashboard');
+    })
+    .catch(err => {
+      console.log('this is the error for delete', err)
+    })
+  }
+
 
   return (
     <Grid container spacing={2}>
@@ -43,26 +66,28 @@ export default function RecipeCard(props) {
         <Card className={classes.root}>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Title: {props.rec.name}
+              Title: {e.name}
             </Typography>
             <Typography variant="h5" component="h2">
-              Source: {props.rec.source}
+              Source: {e.source}
             </Typography>
-            <Typography className={classes.pos} color="textSecondary">
+            {/* <Typography className={classes.pos} color="textSecondary">
               Ingredients: {props.rec.ingredients}
-            </Typography>
-            <Typography variant="body2" component="p">
+            </Typography> */}
+            {/* <Typography variant="body2" component="p">
               Instructions: {props.rec.instructions}
-            </Typography>
+            </Typography> */}
             <Typography variant="body2" component="p">
-              Categories: {props.rec.category}
+              Categories: {e.category}
             </Typography>
           </CardContent>
           <CardActions>
             <Button size="medium">Edit</Button>
           </CardActions>
           <CardActions>
-            <Button size="medium">Delete</Button>
+            <Link to="/dashboard">
+            <Button size="medium" onClick={handleDelete}>Delete</Button>
+            </Link>
           </CardActions>
         </Card>
       </Grid>
