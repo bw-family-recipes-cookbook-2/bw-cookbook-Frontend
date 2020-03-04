@@ -71,12 +71,12 @@ export default function RecipeCard({e, props}) {
             <Typography variant="h5" component="h2">
               Source: {e.source}
             </Typography>
-            {/* <Typography className={classes.pos} color="textSecondary">
-              Ingredients: {props.rec.ingredients}
-            </Typography> */}
-            {/* <Typography variant="body2" component="p">
-              Instructions: {props.rec.instructions}
-            </Typography> */}
+            <Typography className={classes.pos} color="textSecondary">
+              Ingredients: {e.ingredients}
+            </Typography>
+            <Typography variant="body2" component="p">
+              Instructions: {e.instructions}
+            </Typography>
             <Typography variant="body2" component="p">
               Categories: {e.category}
             </Typography>
