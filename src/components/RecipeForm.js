@@ -32,6 +32,7 @@ const RecipeForm= (props) => {
       name: "",
       source: "",
       category: "",
+      // user_id: localStorage.getItem('user_id')
       // instructions: "",
 });
 
@@ -45,6 +46,7 @@ const RecipeForm= (props) => {
         props.createRecipe(newRecipe);
         history.push("/dashboard");
         console.log("submit",newRecipe);
+        
       };
   
 
@@ -115,7 +117,7 @@ const RecipeForm= (props) => {
                     value={newRecipe.category}
                     onChange={handleChange}
                 />
-                <Button type="submit"> Update Recipe </Button>
+                <Button type="submit" > Add Recipe </Button>
             </form>
             
         </div>

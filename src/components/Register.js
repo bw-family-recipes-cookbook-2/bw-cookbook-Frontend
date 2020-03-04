@@ -15,6 +15,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Image from '../Images/BackgroundImg.jpg';
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
+
 
 
 function Copyright() {
@@ -58,7 +61,7 @@ function Copyright() {
   }));
 
 
-  const Register = props => {
+  const Register = ({props, errors, touched}) => {
 
     const classes = useStyles();
     const history = useHistory();
@@ -94,7 +97,7 @@ function Copyright() {
             <Typography component="h1" variant="h5">
             Sign up
             </Typography>
-            <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <Form className={classes.form} onSubmit={handleSubmit} noValidate>
             <Grid container spacing={2}>
                 
                 <Grid item xs={12}>
@@ -112,7 +115,9 @@ function Copyright() {
                 />
                 </Grid>
                 <Grid item xs={12}>
-                <TextField
+                <div>
+                {touched.email && errors.email && <p>{errors.email}</p>}
+                <Field
                     variant="outlined"
                     required
                     fullWidth
@@ -123,9 +128,12 @@ function Copyright() {
                     value={user.email}
                     onChange={handleChanges}
                 />
+                </div>
                 </Grid>
                 <Grid item xs={12}>
-                <TextField
+                <div>
+                {touched.password && errors.password && <p>{errors.password}</p>}
+                <Field
                     variant="outlined"
                     required
                     fullWidth
@@ -136,8 +144,8 @@ function Copyright() {
                     value={user.password}
                     onChange={handleChanges}
                     autoComplete="current-password"
-
                 />
+                </div>
                 </Grid>
 
             </Grid>
@@ -157,7 +165,7 @@ function Copyright() {
                 </Link>
                 </Grid>
             </Grid>
-            </form>
+            </Form>
         </div>
         <Box mt={5}>
             <Copyright />
@@ -172,4 +180,27 @@ function Copyright() {
 const mapStateToProps = state => {
     return state;
 };
-export default connect(mapStateToProps, {register})(Register);
+
+
+const FormikLoginForm = withFormik({
+  mapPropsToValues({ username, email, password }) {
+    return {
+      username: username || "",
+      email: email || "",
+      password: password || ""
+    };
+  },
+
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required(),
+    password: Yup.string()
+      .min(6, "Password must be 6 characters or longer")
+      .required("Password is required")
+  }),
+
+})(Register)
+
+
+export default connect(mapStateToProps, {register})(FormikLoginForm);

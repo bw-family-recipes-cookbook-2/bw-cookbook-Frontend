@@ -71,13 +71,15 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    // const id = localStorage.getItem('user_id');
     AxiosWithAuth()
       .post("api/auth/login", credentials)
       .then(res => {
         console.log(res.data)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("message", res.data.message);
-        localStorage.setItem("user id", res.data.id);
+        localStorage.setItem("user_id", res.data.user_id);
+        
         history.push("/dashboard");
       })
       .catch(err => console.log(err));
