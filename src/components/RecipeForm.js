@@ -1,5 +1,4 @@
-// import React, { useState } from 'react';
-import React from "react";
+ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,7 +7,7 @@ import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecipe } from "../actions/CreateExercise"
-import { withFormik, Form, Field } from "formik";
+
 
 
 
@@ -31,32 +30,31 @@ const RecipeForm= (props) => {
   const classes = useStyles();
   const history = useHistory();
 
-  const newRecipe = {/*{[newRecipe, setNewRecipe] = useState({*/
+  const [newRecipe, setNewRecipe] = useState({
       name: "",
       source: "",
       category: "",
       instructions: "",
-};
+});
 
-    // const handleChange = event => {
-    //     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
-    //     console.log(newRecipe)
-    // };
+    const handleChange = event => {
+        setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
+        console.log(newRecipe)
+    };
 
-    // const submitRecipe = event => {
-    //     event.preventDefault();
-    //     props.createRecipe(newRecipe);
-    //     history.push("/dashboard");
-    //     console.log("submit",newRecipe);
-    //   };
+     const submitRecipe = event => {
+        event.preventDefault();
+        props.createRecipe(newRecipe);
+        history.push("/dashboard");
+        console.log("submit",newRecipe);
+       };
   
 
   return (
     <div>
         <NavBar />    
         <div className={classes.root}>
-            {/* <form onSubmit={submitRecipe}> */}
-            <Form>
+            <form onSubmit={submitRecipe}>
                 <TextField 
                     variant="outlined"
                     margin="normal"
@@ -68,7 +66,7 @@ const RecipeForm= (props) => {
                     autoComplete="name"
                     autoFocus
                     value={newRecipe.name}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 <TextField 
                     variant="outlined"
@@ -81,7 +79,7 @@ const RecipeForm= (props) => {
                     autoComplete="source"
                     autoFocus
                     value={newRecipe.source}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 {/* <TextField className={classes.tallText}
                     variant="outlined"
@@ -105,7 +103,7 @@ const RecipeForm= (props) => {
                     autoComplete="instructions"
                     autoFocus
                     value={newRecipe.instructions}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 <TextField 
                     variant="outlined"
@@ -117,10 +115,10 @@ const RecipeForm= (props) => {
                     autoComplete="category"
                     autoFocus
                     value={newRecipe.category}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                 />
                 <Button type="submit"> Update Recipe </Button>
-                </Form>
+            </form>
             
         </div>
     </div>

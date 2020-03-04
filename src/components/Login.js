@@ -15,8 +15,37 @@ import Image from "../Images/BackgroundImg.jpg";
 // import axiosWithAuth from "../utils/AxiosWithAuth";
 import { useHistory } from "react-router-dom";
 // import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { getLogin } from "../actions/LoginAction";
+//import { connect } from "react-redux";
+//import { getLogin } from "../actions/LoginAction";
+
+// import { withFormik, Form, Field } from "formik";
+
+// function LoginForm() {
+//   return (
+//     <Form>
+//       <Field type="username" name="username" placeholder="Username" />
+//       <Field type="password" name="password" placeholder="Password" />
+//       <button>Sign in</button>
+//     </Form>
+//   );
+// }
+
+// const FormikLoginForm = withFormik({
+//   mapPropsToValues({ username, password }) {
+//     return {
+//       username: username || "",
+//       password: password || ""
+//     };
+//   },
+
+//   handleSubmit(values) {
+//     console.log(values);
+//     //THIS IS WHERE YOU DO YOUR FORM SUBMISSION CODE... HTTP REQUESTS, ETC.
+//   }
+// })(LoginForm);
+
+// export default FormikLoginForm;
+
 
 function Copyright() {
   return (
@@ -89,7 +118,7 @@ const Login = props => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} noValidate >
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -113,7 +142,7 @@ const Login = props => {
                 type="password"
                 id="password"
                 value={user.password}
-                onChange={handleChanges}
+                 onChange={handleChanges}
                 autoComplete="current-password"
               />
               <Button 
@@ -141,9 +170,10 @@ const Login = props => {
       </div>
     </div>
   );
-};
-const mapStateToProps = state => {
-  return state;
-};
 
-export default connect(mapStateToProps, { getLogin })(Login);
+ const mapStateToProps = state => {
+   return state;
+ };
+
+  export default connect(mapStateToProps, { getLogin })(Login);
+ }
