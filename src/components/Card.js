@@ -81,13 +81,13 @@ export default function RecipeCard({e, props}) {
               Categories: {e.category}
             </Typography>
           </CardContent>
-          <CardActions>
+          {/* <CardActions>
             <Button size="medium">Edit</Button>
-          </CardActions>
+          </CardActions> */}
           <CardActions>
-            <Link to="/dashboard">
-            <Button size="medium" onClick={handleDelete}>Delete</Button>
-            </Link>
+            {/* <Link to={`/recipe/${e.id}`}>
+            <Button size="medium">Make changes</Button>
+            </Link> */}
           </CardActions>
         </Card>
       </Grid>

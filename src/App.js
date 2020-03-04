@@ -23,9 +23,9 @@ function App() {
             <Login />
           </Route>
 
-          <Route exact path="/register">
-            <Register/>
-          </Route>
+          <Route exact path="/register" component={Register}/>
+            
+          
 
           <Route exact path="/navbar">
             <NavBar />
