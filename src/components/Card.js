@@ -34,6 +34,7 @@ const useStyles = makeStyles({
 
 export default function RecipeCard(props) {
   const classes = useStyles();
+  console.log("here are indivd props",props);
   
 
   return (
