@@ -1,14 +1,14 @@
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 export const CREATE_RECIPE_START = "CREATE_RECIPE_START";
-export const CREATE_RECIPE_SUCCESS = "CREATE_EXERCISE_SUCCESS";
-export const CREATE_RECIPE_FAILURE = "CREATE_EXERCISE_FAILURE";
+export const CREATE_RECIPE_SUCCESS = "CREATE_RECIPE_SUCCESS";
+export const CREATE_RECIPE_FAILURE = "CREATE_RECIPE_FAILURE";
 
-export const createRecipe = recipe => dispatch => {
+export const createRecipe = id => dispatch => {
     dispatch({ type: CREATE_RECIPE_START });
-    console.log("checking recipe", recipe);
+    console.log("checking recipe", id);
     AxiosWithAuth()
-      .post(`api/recipe/user/6`, recipe)
+      .post(`api/recipes/user/2`,id)
       .then(res => {
         console.log("create post", res.data);
         dispatch({ type: CREATE_RECIPE_SUCCESS, payload: res.data });

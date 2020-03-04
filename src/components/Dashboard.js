@@ -13,10 +13,11 @@ export default function Dashboard(){
     <NavBar />
     <div>
       <h1>Secret Family Recipies</h1>
-      <Button href="/rform/">Add Recipie</Button>
+      {/* <Button href="/rform/">Add Recipie</Button>
       {Data.map(function(rec, index){
         return <Card rec={rec} key={index}/>
-      })}
+      })} */}
+      
     </div>
     </div>
   );

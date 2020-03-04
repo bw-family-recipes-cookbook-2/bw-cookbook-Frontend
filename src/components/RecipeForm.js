@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { findByLabelText } from '@testing-library/react';
 import NavBar from "./NavBar";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { createRecipe } from "../actions/CreateExercise"
+import { createRecipe } from "../actions/CreateRecipe"
 
 
 
@@ -33,12 +32,12 @@ const RecipeForm= (props) => {
       name: "",
       source: "",
       category: "",
-      instructions: "",
+      // instructions: "",
 });
 
     const handleChange = event => {
         setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
-        console.log(newRecipe)
+        console.log("this is the new recipe",newRecipe)
     };
 
     const submitRecipe = event => {
@@ -91,7 +90,7 @@ const RecipeForm= (props) => {
                     autoComplete="ingredients"
                     autoFocus
                 /> */}
-                <TextField 
+                {/* <TextField 
                     variant="outlined"
                     margin="normal"
                     required
@@ -103,7 +102,7 @@ const RecipeForm= (props) => {
                     autoFocus
                     value={newRecipe.instructions}
                     onChange={handleChange}
-                />
+                /> */}
                 <TextField 
                     variant="outlined"
                     margin="normal"

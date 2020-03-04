@@ -1,4 +1,4 @@
-import axiosWithAuth from '../utils/AxiosWithAuth';
+import AxiosWithAuth from '../utils/AxiosWithAuth';
 
 export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -8,7 +8,7 @@ export const register = info => {
     return dispatch => {
         dispatch({ type: REGISTER_START});
         console.log(info);
-        axiosWithAuth()
+        AxiosWithAuth()
         .post('api/auth/register', info)
         .then(res => {
             console.log('this is sign up', res);
