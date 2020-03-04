@@ -10,6 +10,7 @@ import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
 
+
     link:{
         color: "white",
     },
@@ -63,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({handleInputChange, query}) {
   const classes = useStyles();
   
   return (
@@ -80,6 +81,8 @@ export default function PrimarySearchAppBar() {
             </div>
             <InputBase
               placeholder="Search…"
+              value={query}
+              onChange={handleInputChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
