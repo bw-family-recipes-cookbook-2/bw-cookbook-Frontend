@@ -36,6 +36,7 @@ const useStyles = makeStyles({
 
 export default function RecipeCard({e, props}) {
   const classes = useStyles();
+
   const [secretRecipe, setSecretRecipe] = useState({})
   const history = useHistory();
   const {id} = useParams ();
@@ -57,7 +58,6 @@ export default function RecipeCard({e, props}) {
       console.log('this is the error for delete', err)
     })
   }
-
 
   return (
     <Grid container spacing={2}>
