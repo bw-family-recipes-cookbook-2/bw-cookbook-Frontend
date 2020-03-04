@@ -1,5 +1,11 @@
 import { UPDATE_TITLE } from "../actions/actions";
-import {CREATE_RECIPE_START, CREATE_RECIPE_FAILURE, CREATE_RECIPE_SUCCESS} from '../actions/CreateRecipe'
+
+import {
+  CREATE_RECIPE_START,
+  CREATE_RECIPE_FAILURE,
+  CREATE_RECIPE_SUCCESS
+} from "../actions/CreateRecipe";
+
 import {
   FETCH_LOGIN_START,
   FETCH_LOGIN_SUCCESS,
@@ -11,6 +17,11 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "../actions/RegisterAction";
+import { 
+  FETCH_RECIPE_START,
+  FETCH_RECIPE_SUCCESS,
+  FETCH_RECIPE_FAIL
+} from "../actions/FetchRecipes";
 
 const initialState = {
   title: "THIS IS THE DASHBOARD",
@@ -18,12 +29,12 @@ const initialState = {
   userInfo: {
     username: "",
     password: "",
-    email:"",
+    email: "",
     id: 0
   },
-  userRecipe: [], 
+  userRecipe: [],
   isLoading: false,
-  recipes: [],
+  recipes: []
 };
 export const reducers = (state = initialState, action) => {
   switch (action.type) {
@@ -37,7 +48,7 @@ export const reducers = (state = initialState, action) => {
       return {
         ...state,
         // isFetching: true,
-        isLoading:true,
+        isLoading: true,
         error: ""
       };
     case FETCH_LOGIN_SUCCESS:
@@ -51,7 +62,7 @@ export const reducers = (state = initialState, action) => {
     case FETCH_LOGIN_FAIL:
       return {
         ...state,
-        isLoading:false,
+        isLoading: false,
         error: action.payload
       };
     //register
@@ -77,13 +88,13 @@ export const reducers = (state = initialState, action) => {
     case CREATE_RECIPE_START:
       return {
         ...state,
-        isLoading: true,
+        isLoading: true
       };
-      case CREATE_RECIPE_SUCCESS:
+    case CREATE_RECIPE_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        userRecipe: action.payload,
+        userRecipe: action.payload
       };
     case CREATE_RECIPE_FAILURE:
       return {
@@ -91,6 +102,25 @@ export const reducers = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
+      //get recipes
+      case FETCH_RECIPE_START: 
+      return{
+          ...state,
+          isLoading: true,
+
+      };
+      case FETCH_RECIPE_SUCCESS:
+        return{
+            ...state,
+            isLoading: false,
+            userRecipe: action.payload
+        };
+        case FETCH_RECIPE_FAIL:
+          return {
+            ...state,
+            isLoading: false,
+            error: action.payload
+          };
     default:
       return state;
   }

@@ -11,7 +11,7 @@ export const getLogin = info => dispatch => {
                 .then(res => {
                     dispatch ({type: FETCH_LOGIN_SUCCESS, payload: res.data});
                     localStorage.setItem('this is the token', res.data.token);
-                    localStorage.setItem('this is the id', res.data.id);
+                    localStorage.getItem('this is the id', res.data.user_id);
 
                     // localStorage.setItem('this is the messge', res.data.message);
                     console.log('this is from loginAction', res.data);
