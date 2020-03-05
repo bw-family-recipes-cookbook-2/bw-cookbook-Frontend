@@ -34,29 +34,29 @@ const useStyles = makeStyles({
 });
 
 
-export default function RecipeCard({e, props}) {
+export default function RecipeCard({e}) {
   const classes = useStyles();
-  const [secretRecipe, setSecretRecipe] = useState({})
-  const history = useHistory();
-  const {id} = useParams ();
-  console.log('this is props from caard', e);
+
+  // const history = useHistory();
+  // const {id} = useParams ();
+  // console.log('this is props from caard', e);
   // useEffect(() => {
   //   AxiosWithAuth()
 
   // })
-  const handleDelete = event => {
-    // event.preventDefault();
-    const userId  = localStorage.getItem("user_id")
-  // const idNum = parseInt(userId);  
-    AxiosWithAuth()
-    .delete(`api/recipes/${e.id}`)
-    .then(() => {
-      history.push('/dashboard');
-    })
-    .catch(err => {
-      console.log('this is the error for delete', err)
-    })
-  }
+  // const handleDelete = event => {
+  //   // event.preventDefault();
+  //   const userId  = localStorage.getItem("user_id")
+  // // const idNum = parseInt(userId);  
+  //   AxiosWithAuth()
+  //   .delete(`api/recipes/${e.id}`)
+  //   .then(() => {
+  //     history.push('/dashboard');
+  //   })
+  //   .catch(err => {
+  //     console.log('this is the error for delete', err)
+  //   })
+  // }
 
 
   return (
@@ -85,9 +85,12 @@ export default function RecipeCard({e, props}) {
             <Button size="medium">Edit</Button>
           </CardActions> */}
           <CardActions>
-            {/* <Link to={`/recipe/${e.id}`}>
+            <Link to={{
+              pathname: `/recipe/${e.id}`,
+              secretRecipe: e
+            }} >
             <Button size="medium">Make changes</Button>
-            </Link> */}
+            </Link>
           </CardActions>
         </Card>
       </Grid>
