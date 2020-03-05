@@ -42,17 +42,40 @@ const SecretRecipe =  (props) => {
     const history = useHistory();
     const {id} = useParams();
 
-    const initialValue = {
-      name: `${props.location.secretRecipe.name} `,
-      source: `${props.location.secretRecipe.source}`,
-      category: `${props.location.secretRecipe.category}`,
-      instructions: `${props.location.secretRecipe.instructions}`,
-      ingredients: `${props.location.secretRecipe.ingredients}`,
-      };
+    // const initialValue = {
+    //   name: `${props.location.secretRecipe.name} `,
+    //   source: `${props.location.secretRecipe.source}`,
+    //   category: `${props.location.secretRecipe.category}`,
+    //   instructions: `${props.location.secretRecipe.instructions}`,
+    //   ingredients: `${props.location.secretRecipe.ingredients}`,
+    //   };
 
-console.log("inital value", initialValue);
+    const user_id = localStorage.getItem('user_id');
+    const idNum = parseInt(id);
+    const [recipe, setRecipe] = useState({
+        id: "",
+        name: "",
+        source: "",
+        category: "",
+        instructions: "",
+        ingredients: "",
+        user_id: idNum
+      }); 
 
-console.log('this is props', props)
+      useEffect(()=> {
+        AxiosWithAuth()
+        .get(`api/recipes/${id}`)
+        .then(res => {
+            console.log(res)
+            setRecipe(res.data)
+          })
+        .catch(err => console.log(err))
+    }, [])
+
+
+// console.log("inital value", initialValue);
+
+// console.log('this is props', props)
 
   const handleDelete = event => {
     event.preventDefault();
@@ -72,7 +95,7 @@ console.log('this is props', props)
 const handleEdit = event => {
     event.preventDefault();
     AxiosWithAuth()
-    .put(`api/recipes/${id}`, editRecipe)
+    .put(`api/recipes/${id}`, recipe)
     .then(() => {
         history.push('/dashboard')
     })
@@ -83,7 +106,7 @@ const handleEdit = event => {
 
 
 
-const [editRecipe, setEditRecipe] = useState(initialValue
+// const [editRecipe, setEditRecipe] = useState(initialValue
 
   // name: `${props.location.secretRecipe.name} `,
   // source: `${props.location.secretRecipe.source}`,
@@ -92,13 +115,20 @@ const [editRecipe, setEditRecipe] = useState(initialValue
   // ingredients: `${props.location.secretRecipe.ingredients}`,
   // user_id: localStorage.getItem('user_id')
   // instructions: "",
-);
-console.log(editRecipe)
+// );
+// console.log(editRecipe)
 
 const handleChange = event => {
-  setEditRecipe({ ...editRecipe, [event.target.name]: event.target.value });
-  console.log("this is the edited recipe",editRecipe)
+  setRecipe({ ...recipe, [event.target.name]: event.target.value });
+  console.log("this is the edited recipe",recipe)
 };
+
+// const handleChange = e => {
+//   setRecipe({
+//       recipe,
+//       [e.target.name]: e.target.value
+//     });
+//   }
 
 
 //  useEffect((rec)=> {
@@ -113,6 +143,7 @@ const handleChange = event => {
           <Grid item xs={12} sm={6}>
             <form >
               <TextField 
+                type="text"
                 variant="outlined"
                 margin="normal"
                 required
@@ -123,63 +154,67 @@ const handleChange = event => {
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={editRecipe.name || ""}
+                value={recipe.name}
                 onChange={handleChange}
               />
               <TextField 
+                type="text"
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="name"
+                id="source"
                 label="Source"
                 // defaultValue={props.location.secretRecipe.source} 
-                name="name"
-                autoComplete="name"
+                name="source"
+                autoComplete="source"
                 autoFocus
-                value={editRecipe.source || ""}
+                value={recipe.source}
                 onChange={handleChange}
               />
               <TextField 
+                type="text"
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="name"
+                id="ingredients"
                 label="Ingredients"
                 // defaultValue={props.location.secretRecipe.ingredients}
-                name="name"
-                autoComplete="name"
+                name="ingredients"
+                autoComplete="ingredients"
                 autoFocus
-                value={editRecipe.ingredients || ""}
+                value={recipe.ingredients}
                 onChange={handleChange}
               />
               <TextField 
+                type="text"
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="name"
+                id="instructions"
                 label="Instructions"
                 // defaultValue={props.location.secretRecipe.instructions} 
-                name="name"
-                autoComplete="name"
+                name="instructions"
+                autoComplete="instructions"
                 autoFocus
-                value={editRecipe.instructions || ""}
+                value={recipe.instructions}
                 onChange={handleChange}
               />
               <TextField 
+                type="text"
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="name"
+                id="category"
                 label="Category"
                 // defaultValue={props.location.secretRecipe.category} 
-                name="name"
-                autoComplete="name"
+                name="category"
+                autoComplete="category"
                 autoFocus
-                value={editRecipe.category || ""}
+                value={recipe.category}
                 onChange={handleChange}
               />
             <Button size="medium" onClick={handleEdit}>Edit</Button>
