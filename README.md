@@ -35,7 +35,7 @@ deleted
     - Be as specific as possible; how does your app solve the problem?
         - Tells you ingredients of receipts, all online so if running to store you can easier access them.
 
-    - What is the mission statement?
+    - What is the mission  statement?
         - Our app stores and retrieves receipts conviniently for anyone with internet access 
 
     # 💡 Features

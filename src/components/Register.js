@@ -112,7 +112,7 @@ function Copyright() {
             <Grid container spacing={2}>
                 
                 <Grid item xs={12}>
-                <input
+                <TextField
                     variant="outlined"
                     
                     fullWidth
@@ -122,12 +122,12 @@ function Copyright() {
                     value={user.username}
                     onChange={handleChanges}
                     autoComplete="uname"
-                    ref={register()}
+                    inputRef={register}
                 />
                 {errors.username && errors.username.type === "required" && <p>Username Required</p>}
                 </Grid>
                 <Grid item xs={12}>
-                <input
+                <TextField
                     variant="outlined"
                     
                     fullWidth
@@ -137,13 +137,13 @@ function Copyright() {
                     autoComplete="email"
                     value={user.email}
                     onChange={handleChanges}
-                    ref={register()}
+                    inputRef={register}
                 />
                 {errors.email && errors.email.type === "required" && <p>An email address is required</p>}
                 {errors.email && errors.email.type === "email" && <p>Must Look like an email</p>}
                 </Grid>
                 <Grid item xs={12}>
-                <input
+                <TextField
                     variant="outlined"
                     
                     fullWidth
@@ -154,7 +154,7 @@ function Copyright() {
                     value={user.password}
                     onChange={handleChanges}
                     autoComplete="current-password"
-                    ref={register()}
+                    inputRef={register}
                 />
                 {errors.password && errors.password.type === "required" && <p>Password Required</p>}
                 {errors.password && errors.password.type === "min" && <p>Length of 6 needed</p>}
