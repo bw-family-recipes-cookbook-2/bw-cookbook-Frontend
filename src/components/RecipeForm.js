@@ -32,6 +32,8 @@ const RecipeForm= (props) => {
       name: "",
       source: "",
       category: "",
+      instructions: "",
+      ingredients: "",
       // user_id: localStorage.getItem('user_id')
       // instructions: "",
 });
@@ -81,7 +83,7 @@ const RecipeForm= (props) => {
                     value={newRecipe.source}
                     onChange={handleChange}
                 />
-                {/* <TextField className={classes.tallText}
+                <TextField className={classes.tallText}
                     variant="outlined"
                     margin="normal"
                     required
@@ -91,8 +93,10 @@ const RecipeForm= (props) => {
                     name="ingredients"
                     autoComplete="ingredients"
                     autoFocus
-                /> */}
-                {/* <TextField 
+                    value={newRecipe.ingredients}
+                    onChange={handleChange}
+                />
+                <TextField 
                     variant="outlined"
                     margin="normal"
                     required
@@ -104,7 +108,7 @@ const RecipeForm= (props) => {
                     autoFocus
                     value={newRecipe.instructions}
                     onChange={handleChange}
-                /> */}
+                />
                 <TextField 
                     variant="outlined"
                     margin="normal"

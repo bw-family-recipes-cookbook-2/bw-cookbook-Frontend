@@ -11,22 +11,23 @@ import Container from "@material-ui/core/Container";
 import Grid from '@material-ui/core/Grid';
 
 
+
 const useStyles = makeStyles({
   flex: {
     display: "flex",
-    flexWrap: "wrap",
+    justifyContent: "center",
   },
   root: {
-    // width:"30%",
+    flexGrow: 1,
   },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
-  title: {
-    fontSize: 14,
-  },
+  // title: {
+  //   fontSize: 14,
+  // },
   pos: {
     marginBottom: 12,
   },
@@ -60,24 +61,24 @@ export default function RecipeCard({e, props}) {
 
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}></Grid>
-      <Grid item xs>
-        <Card className={classes.root}>
+    
+    <Grid container spacing={10} direction="row" justify="center" >
+      <Grid item xs={12}sm={6} >
+        <Card >
           <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
+            <Typography variant="h3" component="h2" gutterBottom>
               Title: {e.name}
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h3" color="textSecondary">
               Source: {e.source}
             </Typography>
-            {/* <Typography className={classes.pos} color="textSecondary">
-              Ingredients: {props.rec.ingredients}
-            </Typography> */}
-            {/* <Typography variant="body2" component="p">
-              Instructions: {props.rec.instructions}
-            </Typography> */}
-            <Typography variant="body2" component="p">
+            <Typography variant="h5" component="h3" className={classes.pos} color="textSecondary">
+              Ingredients: {e.ingredients}
+            </Typography>
+            <Typography variant="h6" component="p" className={classes.pos}>
+              Instructions: {e.instructions}
+            </Typography>
+            <Typography variant="h6" component="p">
               Categories: {e.category}
             </Typography>
           </CardContent>
@@ -92,5 +93,6 @@ export default function RecipeCard({e, props}) {
         </Card>
       </Grid>
     </Grid>
+    
   );
 }
