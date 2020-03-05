@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Image from '../Images/BackgroundImg.jpg';
+import {useForm} from 'react-hook-form';
 
 
 function Copyright() {
@@ -59,7 +60,8 @@ function Copyright() {
 
 
   const Register = props => {
-
+    console.log("props",props);
+    const {register, handleSubmit, errors} = useForm();
     const classes = useStyles();
     const history = useHistory();
     const [user, setUser] = useState ({
@@ -69,8 +71,8 @@ function Copyright() {
     });
     console.log('this is user', user)
     ;
-    const handleSubmit = e => {
-        e.preventDefault();
+    const handleSubmit1 = e => {
+        // e.preventDefault();
         props.register(user);
         history.push('/');
     };
@@ -94,13 +96,13 @@ function Copyright() {
             <Typography component="h1" variant="h5">
             Sign up
             </Typography>
-            <form className={classes.form} onSubmit={handleSubmit} noValidate>
+            <form className={classes.form} onSubmit={handleSubmit(handleSubmit1)}>
             <Grid container spacing={2}>
                 
                 <Grid item xs={12}>
-                <TextField
+                <input
                     variant="outlined"
-                    required
+                    
                     fullWidth
                     id="username"
                     label="username"
@@ -108,13 +110,15 @@ function Copyright() {
                     value={user.username}
                     onChange={handleChanges}
                     autoComplete="uname"
-
+                    ref={register({required: true, minLength: 2})}
                 />
+                {errors.username && errors.username.type === "required" && <p>Username Required</p>}
+                {errors.username && errors.username.type === "minLength" && <p>Length of 2 needed</p>}
                 </Grid>
                 <Grid item xs={12}>
-                <TextField
+                <input
                     variant="outlined"
-                    required
+                    
                     fullWidth
                     id="email"
                     label="email"
@@ -122,12 +126,13 @@ function Copyright() {
                     autoComplete="email"
                     value={user.email}
                     onChange={handleChanges}
+                    ref={register({required: true})}
                 />
                 </Grid>
                 <Grid item xs={12}>
-                <TextField
+                <input
                     variant="outlined"
-                    required
+                    
                     fullWidth
                     name="password"
                     label="password"
@@ -136,7 +141,7 @@ function Copyright() {
                     value={user.password}
                     onChange={handleChanges}
                     autoComplete="current-password"
-
+                    ref={register({required: true})}
                 />
                 </Grid>
 
