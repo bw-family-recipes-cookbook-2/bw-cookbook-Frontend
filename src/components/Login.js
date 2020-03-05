@@ -32,10 +32,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   background: {
-    backgroundImage: `url(${Image})`,
+    background: `url(${Image})no-repeat center center`,
     height: "100vh",
-    width: "50%",
-    backgroundSize: "cover"
+    width: "100%",
+    backgroundSize: "cover",
+
   },
   paper: {
     marginTop: theme.spacing(8),
@@ -49,11 +50,16 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+    color:'yellow',
+  },
+  username:{
+color:'red',
+  },
 }));
 
 const Login = props => {
@@ -62,7 +68,7 @@ const Login = props => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
-    email:"",
+    email: ""
   });
   const handleChanges = e => {
     let name = e.target.name;
@@ -75,43 +81,15 @@ const Login = props => {
     AxiosWithAuth()
       .post("api/auth/login", credentials)
       .then(res => {
-        console.log(res.data)
+        console.log(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("message", res.data.message);
         localStorage.setItem("user_id", res.data.user_id);
-        
+
         history.push("/dashboard");
       })
       .catch(err => console.log(err));
   };
-  // const handleChanges = e => {
-  //   console.log('this is the sign in',user)
-  //   setUser({
-  //     ...user,
-  //     [e.target.name]: e.target.value
-  //   });
-  // };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   props.getLogin(user);
-  //   history.push("/dashboard");
-  // };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   // console.log('this is the submit', user)
-  //   AxiosWithAuth()
-  //       .post('api/auth/login', user)
-  //       .then(res => {
-  //         localStorage.setItem('token', res.data.token)
-  //         localStorage.setItem('message', res.data.message);
-  //         // localStorage.setItem('token', res.data.payload)
-
-  //         history.push("/dashboard");
-  //       })
-  //       .catch(err => console.log("this is an err", err))
-  // };
 
   return (
     <div className={classes.flex}>
@@ -126,7 +104,7 @@ const Login = props => {
               Sign in
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
-              <TextField
+              <TextField className={classes.username}
                 variant="outlined"
                 margin="normal"
                 required
@@ -136,7 +114,7 @@ const Login = props => {
                 name="username"
                 autoComplete="uname"
                 value={credentials.username}
-              onChange={handleChanges}
+                onChange={handleChanges}
                 autoFocus
               />
               <TextField
@@ -149,7 +127,7 @@ const Login = props => {
                 name="email"
                 autoComplete="email"
                 value={credentials.email}
-              onChange={handleChanges}
+                onChange={handleChanges}
                 autoFocus
               />
               <TextField
@@ -162,11 +140,10 @@ const Login = props => {
                 type="password"
                 id="password"
                 value={credentials.password}
-              onChange={handleChanges}
+                onChange={handleChanges}
                 autoComplete="current-password"
               />
-              <Button 
-              
+              <Button
                 type="submit"
                 fullWidth
                 variant="contained"

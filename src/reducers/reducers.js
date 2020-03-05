@@ -1,5 +1,3 @@
-import { UPDATE_TITLE } from "../actions/actions";
-
 import {
   CREATE_RECIPE_START,
   CREATE_RECIPE_FAILURE,
@@ -24,7 +22,6 @@ import {
 } from "../actions/FetchRecipes";
 
 const initialState = {
-  title: "THIS IS THE DASHBOARD",
 
   userInfo: {
     username: "",
@@ -38,11 +35,6 @@ const initialState = {
 };
 export const reducers = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_TITLE:
-      return {
-        ...state,
-        title: action.payload
-      };
     //login
     case FETCH_LOGIN_START:
       return {
