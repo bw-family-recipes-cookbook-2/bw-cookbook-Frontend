@@ -34,10 +34,23 @@ const useStyles = makeStyles({
     },
   
   });
+
+
+
 const SecretRecipe =  (props) => {
     const classes = useStyles();
     const history = useHistory();
     const {id} = useParams();
+
+    const initialValue = {
+      name: `${props.location.secretRecipe.name} `,
+      source: `${props.location.secretRecipe.source}`,
+      category: `${props.location.secretRecipe.category}`,
+      instructions: `${props.location.secretRecipe.instructions}`,
+      ingredients: `${props.location.secretRecipe.ingredients}`,
+      };
+
+console.log("inital value", initialValue);
 
 console.log('this is props', props)
 
@@ -56,10 +69,10 @@ console.log('this is props', props)
    
 };
 
-const handleEdit = e => {
-    e.preventDefault();
+const handleEdit = event => {
+    event.preventDefault();
     AxiosWithAuth()
-    .put(`api/recipes/${id}`)
+    .put(`api/recipes/${id}`, editRecipe)
     .then(() => {
         history.push('/dashboard')
     })
@@ -68,27 +81,25 @@ const handleEdit = e => {
     })
 };
 
-const [editRecipe, setEditRecipe] = useState({
-  name: `${props.location.secretRecipe.name} `,
-  source: `${props.location.secretRecipe.source}`,
-  category: `${props.location.secretRecipe.category}`,
-  instructions: `${props.location.secretRecipe.instructions}`,
-  ingredients: `${props.location.secretRecipe.ingredients}`,
+
+
+const [editRecipe, setEditRecipe] = useState(initialValue
+
+  // name: `${props.location.secretRecipe.name} `,
+  // source: `${props.location.secretRecipe.source}`,
+  // category: `${props.location.secretRecipe.category}`,
+  // instructions: `${props.location.secretRecipe.instructions}`,
+  // ingredients: `${props.location.secretRecipe.ingredients}`,
   // user_id: localStorage.getItem('user_id')
   // instructions: "",
-});
+);
+console.log(editRecipe)
 
 const handleChange = event => {
   setEditRecipe({ ...editRecipe, [event.target.name]: event.target.value });
-  console.log("this is the new recipe",editRecipe)
+  console.log("this is the edited recipe",editRecipe)
 };
 
-
-const changeEditMode = () => {
-  console.log("should go to edit mode")
-}
-
- const [rec, setRec]=useState()
 
 //  useEffect((rec)=> {
 //   isInEditMode: false
@@ -100,7 +111,7 @@ const changeEditMode = () => {
       <div >  
         <Grid container spacing={2} direction="row" justify="center"  >
           <Grid item xs={12} sm={6}>
-            <form>
+            <form >
               <TextField 
                 variant="outlined"
                 margin="normal"
@@ -108,11 +119,11 @@ const changeEditMode = () => {
                 fullWidth
                 id="name"
                 label="Title" 
-                defaultValue={props.location.secretRecipe.name}
+                // defaultValue={props.location.secretRecipe.name}
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={editRecipe.name}
+                value={editRecipe.name || ""}
                 onChange={handleChange}
               />
               <TextField 
@@ -122,11 +133,11 @@ const changeEditMode = () => {
                 fullWidth
                 id="name"
                 label="Source"
-                defaultValue={props.location.secretRecipe.source} 
+                // defaultValue={props.location.secretRecipe.source} 
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={editRecipe.source}
+                value={editRecipe.source || ""}
                 onChange={handleChange}
               />
               <TextField 
@@ -136,11 +147,11 @@ const changeEditMode = () => {
                 fullWidth
                 id="name"
                 label="Ingredients"
-                defaultValue={props.location.secretRecipe.ingredients}
+                // defaultValue={props.location.secretRecipe.ingredients}
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={editRecipe.ingredients}
+                value={editRecipe.ingredients || ""}
                 onChange={handleChange}
               />
               <TextField 
@@ -150,11 +161,11 @@ const changeEditMode = () => {
                 fullWidth
                 id="name"
                 label="Instructions"
-                defaultValue={props.location.secretRecipe.instructions} 
+                // defaultValue={props.location.secretRecipe.instructions} 
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={editRecipe.instructions}
+                value={editRecipe.instructions || ""}
                 onChange={handleChange}
               />
               <TextField 
@@ -164,14 +175,14 @@ const changeEditMode = () => {
                 fullWidth
                 id="name"
                 label="Category"
-                defaultValue={props.location.secretRecipe.category} 
+                // defaultValue={props.location.secretRecipe.category} 
                 name="name"
                 autoComplete="name"
                 autoFocus
-                value={editRecipe.category}
+                value={editRecipe.category || ""}
                 onChange={handleChange}
               />
-            <Button size="medium">Edit</Button>
+            <Button size="medium" onClick={handleEdit}>Edit</Button>
             <Link to='/dashboard'>
             <Button size="medium" onClick={handleDelete}>Delete</Button>
             </Link>
