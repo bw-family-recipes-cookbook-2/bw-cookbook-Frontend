@@ -16,6 +16,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Image from '../Images/BackgroundImg.jpg';
 import {useForm} from 'react-hook-form';
+import * as Yup from 'yup'
+
+const RegisterSchema = Yup.object().shape({
+  username: Yup.string()
+    .required(),
+  email: Yup.string()
+    .email()
+    .required(),
+  password: Yup.string()
+    .min(6)
+    .required()
+})
 
 
 function Copyright() {
@@ -61,7 +73,7 @@ function Copyright() {
 
   const Register = props => {
     console.log("props",props);
-    const {register, handleSubmit, errors} = useForm();
+    const {register, handleSubmit, errors} = useForm({validationSchema: RegisterSchema});
     const classes = useStyles();
     const history = useHistory();
     const [user, setUser] = useState ({
@@ -110,10 +122,9 @@ function Copyright() {
                     value={user.username}
                     onChange={handleChanges}
                     autoComplete="uname"
-                    ref={register({required: true, minLength: 2})}
+                    ref={register()}
                 />
                 {errors.username && errors.username.type === "required" && <p>Username Required</p>}
-                {errors.username && errors.username.type === "minLength" && <p>Length of 2 needed</p>}
                 </Grid>
                 <Grid item xs={12}>
                 <input
@@ -126,8 +137,10 @@ function Copyright() {
                     autoComplete="email"
                     value={user.email}
                     onChange={handleChanges}
-                    ref={register({required: true})}
+                    ref={register()}
                 />
+                {errors.email && errors.email.type === "required" && <p>An email address is required</p>}
+                {errors.email && errors.email.type === "email" && <p>Must Look like an email</p>}
                 </Grid>
                 <Grid item xs={12}>
                 <input
@@ -141,8 +154,10 @@ function Copyright() {
                     value={user.password}
                     onChange={handleChanges}
                     autoComplete="current-password"
-                    ref={register({required: true})}
+                    ref={register()}
                 />
+                {errors.password && errors.password.type === "required" && <p>Password Required</p>}
+                {errors.password && errors.password.type === "min" && <p>Length of 6 needed</p>}
                 </Grid>
 
             </Grid>
