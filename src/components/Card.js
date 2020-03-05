@@ -15,11 +15,11 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles({
   flex: {
     display: "flex",
-    flexWrap: "wrap",
+    justifyContent: "center",
   },
-  // root: {
-  //   width:1/4,
-  // },
+  root: {
+    flexGrow: 1,
+  },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -61,9 +61,9 @@ export default function RecipeCard({e, props}) {
 
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}></Grid>
-      <Grid item xs >
+    
+    <Grid container spacing={10} direction="row" justify="center" >
+      <Grid item xs={12}sm={6} >
         <Card >
           <CardContent>
             <Typography variant="h3" component="h2" gutterBottom>
@@ -93,5 +93,6 @@ export default function RecipeCard({e, props}) {
         </Card>
       </Grid>
     </Grid>
+    
   );
 }
