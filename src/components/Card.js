@@ -25,9 +25,7 @@ const useStyles = makeStyles({
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
-  // title: {
-  //   fontSize: 14,
-  // },
+ 
   pos: {
     marginBottom: 12,
   },
@@ -38,26 +36,6 @@ const useStyles = makeStyles({
 export default function RecipeCard({e}) {
   const classes = useStyles();
 
-  // const history = useHistory();
-  // const {id} = useParams ();
-  // console.log('this is props from caard', e);
-  // useEffect(() => {
-  //   AxiosWithAuth()
-
-  // })
-  // const handleDelete = event => {
-  //   // event.preventDefault();
-  //   const userId  = localStorage.getItem("user_id")
-  // // const idNum = parseInt(userId);  
-  //   AxiosWithAuth()
-  //   .delete(`api/recipes/${e.id}`)
-  //   .then(() => {
-  //     history.push('/dashboard');
-  //   })
-  //   .catch(err => {
-  //     console.log('this is the error for delete', err)
-  //   })
-  // }
 
 
   return (
@@ -82,9 +60,6 @@ export default function RecipeCard({e}) {
               Categories: {e.category}
             </Typography>
           </CardContent>
-          {/* <CardActions>
-            <Button size="medium">Edit</Button>
-          </CardActions> */}
           <CardActions>
             <Link to={{
               pathname: `/recipe/${e.id}`,

@@ -2,20 +2,12 @@ import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import NavBar from "./NavBar";
 import Card from "./Card";
-import SecretRecipe from "../components/SecretRecipe";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 
 import { connect } from "react-redux";
 import { fetchRecipes } from "../actions/FetchRecipes";
 
 const Dashboard = () => {
-  // const [dumData, setDumData] = useState([])
-
-  // useEffect(()=> {
-  //   const cookBook = Data.filter(rec => rec.name.toLowerCase().includes(query.toLowerCase()))
-  //   setDumData(cookBook)
-  // }, [query])
-
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
 
@@ -45,20 +37,15 @@ const Dashboard = () => {
   return (
     <div>
       <NavBar handleInputChange={handleInputChange} query={query} />
+
       <div>
         <h1>Secret Family Recipes</h1>
-        {/* <Button href="/rform/">Add Recipie</Button>
-      {dumData.map(function(rec, index){
-        return <Card rec={rec} key={index}/>
-      })} */}
+
         <Button href="/rform/">Add Recipe</Button>
         {recipes.map(e => (
           <Card e={e} key={e.id} />
         ))}
-        
-        
       </div>
-     
     </div>
   );
 };
