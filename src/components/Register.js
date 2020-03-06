@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     background: `url(${Image})no-repeat center center`,
     height: "100vh",
     width: "100%",
-    backgroundSize: "cover",
+    backgroundSize: "cover"
   },
   paper: {
     marginTop: theme.spacing(8),
@@ -65,13 +65,13 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2),
     "&:hover": {
       backgroundColor: "#e0f7fa",
-    color:'black'
+      color: "black"
     }
   }
 }));
 
 const Register = props => {
-  console.log("props", props);
+  // console.log("props", props);
   const { register, handleSubmit, errors } = useForm({
     validationSchema: RegisterSchema
   });
@@ -82,7 +82,7 @@ const Register = props => {
     password: "",
     email: ""
   });
-  console.log("this is user", user);
+  // console.log("this is user", user);
   const handleSubmit1 = e => {
     props.register(user);
     history.push("/");

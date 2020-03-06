@@ -8,10 +8,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(theme => ({
-  link: {
-    color: "white"
-  },
-
   overallApp: {
     display: "flex",
     justifyContent: "space-around"
@@ -19,6 +15,7 @@ const useStyles = makeStyles(theme => ({
 
   title: {
     display: "none",
+    color: "white",
     [theme.breakpoints.up("sm")]: {
       display: "block"
     }
@@ -58,9 +55,9 @@ const useStyles = makeStyles(theme => ({
       width: 200
     }
   },
-  navBar:{
-backgroundColor:'#00bcd4'
-  },
+  navBar: {
+    backgroundColor: "#00bcd4"
+  }
 }));
 
 export default function PrimarySearchAppBar({ handleInputChange, query }) {
@@ -89,12 +86,7 @@ export default function PrimarySearchAppBar({ handleInputChange, query }) {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
-          <Link
-            href="/dashboard"
-            className={classes.title}
-            variant="h6"
-            className={classes.link}
-          >
+          <Link href="/dashboard" className={classes.title} variant="h6">
             Go To Your Recipes
           </Link>
         </Toolbar>

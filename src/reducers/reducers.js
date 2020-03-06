@@ -15,14 +15,13 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL
 } from "../actions/RegisterAction";
-import { 
+import {
   FETCH_RECIPE_START,
   FETCH_RECIPE_SUCCESS,
   FETCH_RECIPE_FAIL
 } from "../actions/FetchRecipes";
 
 const initialState = {
-
   userInfo: {
     username: "",
     password: "",
@@ -94,25 +93,24 @@ export const reducers = (state = initialState, action) => {
         isLoading: false,
         error: action.payload
       };
-      //get recipes
-      case FETCH_RECIPE_START: 
-      return{
-          ...state,
-          isLoading: true,
-
+    //get recipes
+    case FETCH_RECIPE_START:
+      return {
+        ...state,
+        isLoading: true
       };
-      case FETCH_RECIPE_SUCCESS:
-        return{
-            ...state,
-            isLoading: false,
-            userRecipe: action.payload
-        };
-        case FETCH_RECIPE_FAIL:
-          return {
-            ...state,
-            isLoading: false,
-            error: action.payload
-          };
+    case FETCH_RECIPE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        userRecipe: action.payload
+      };
+    case FETCH_RECIPE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
     default:
       return state;
   }

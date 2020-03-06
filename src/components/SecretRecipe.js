@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import NavBar from "../components/NavBar";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from '@material-ui/core/styles';
-
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
-button:{
-  border:'1px solid black',
-  backgroundColor:'white',
-  marginTop:'4%',
-  margin: "2%"
-},
-background:{
-  backgroundColor:'#e0f7fa',
-  height:'100vh',
-},
+  button: {
+    border: "1px solid black",
+    backgroundColor: "white",
+    marginTop: "4%",
+    margin: "2%"
+  },
+  background: {
+    backgroundColor: "#e0f7fa",
+    height: "100vh"
+  }
 });
 const SecretRecipe = props => {
   const classes = useStyles();
@@ -41,7 +40,7 @@ const SecretRecipe = props => {
     AxiosWithAuth()
       .get(`api/recipes/${id}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         setRecipe(res.data);
       })
       .catch(err => console.log(err));
@@ -74,14 +73,14 @@ const SecretRecipe = props => {
 
   const handleChange = event => {
     setRecipe({ ...recipe, [event.target.name]: event.target.value });
-    console.log("this is the edited recipe", recipe);
+    // console.log("this is the edited recipe", recipe);
   };
 
   return (
     <div className={classes.background}>
       <NavBar />
       <div>
-      <h1>Edit Secret Recipe</h1>
+        <h1>Edit Secret Recipe</h1>
         <Grid container spacing={2} direction="row" justify="center">
           <Grid item xs={12} sm={6}>
             <form>
@@ -155,14 +154,22 @@ const SecretRecipe = props => {
                 value={recipe.category}
                 onChange={handleChange}
               />
-              
-              <Button className={classes.button} size="medium" onClick={handleEdit}>
+
+              <Button
+                className={classes.button}
+                size="medium"
+                onClick={handleEdit}
+              >
                 Update
               </Button>
               {/* <Link to="/dashboard"> */}
-                <Button className={classes.button} size="medium" onClick={handleDelete}>
-                  Delete
-                </Button>
+              <Button
+                className={classes.button}
+                size="medium"
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
               {/* </Link> */}
             </form>
           </Grid>
