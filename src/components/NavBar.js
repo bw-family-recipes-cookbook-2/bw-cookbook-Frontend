@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
   overallApp: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "space-around"
   },
 
   title: {
@@ -57,7 +57,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("md")]: {
       width: 200
     }
-  }
+  },
+  navBar:{
+backgroundColor:'#00bcd4'
+  },
 }));
 
 export default function PrimarySearchAppBar({ handleInputChange, query }) {
@@ -65,7 +68,7 @@ export default function PrimarySearchAppBar({ handleInputChange, query }) {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar className={classes.navBar} position="static">
         <Toolbar className={classes.overallApp}>
           <Typography className={classes.title} variant="h6" noWrap>
             Secret Family Recipes

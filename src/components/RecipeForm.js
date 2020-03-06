@@ -13,11 +13,22 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-    marginTop: "10%"
+    marginTop: "4%",
+   
   },
 
   tallText: {
     height: 50
+  },
+  background:{
+    backgroundColor:'#e0f7fa',
+    height:'100vh',
+    marginTop:"50%"
+  },
+  button:{
+    border:'1px solid black',
+    backgroundColor:'white',
+    marginTop:'4%'
   }
 });
 
@@ -46,9 +57,11 @@ const RecipeForm = props => {
   };
 
   return (
-    <div>
+    <div className={classes.background}>
       <NavBar />
+
       <div className={classes.root}>
+      <h1>Add Your Secret Recipe</h1>
         <form onSubmit={submitRecipe}>
           <TextField
             variant="outlined"
@@ -115,7 +128,7 @@ const RecipeForm = props => {
             value={newRecipe.category}
             onChange={handleChange}
           />
-          <Button type="submit"> Add Recipe </Button>
+          <Button className={classes.button} type="submit"> Add Recipe </Button>
         </form>
       </div>
     </div>
