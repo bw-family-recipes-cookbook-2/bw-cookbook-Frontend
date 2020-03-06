@@ -17,9 +17,9 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
   },
-  root: {
-    flexGrow: 1,
-  },
+  // root: {
+  //   flexGrow: 1,
+  // },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -27,9 +27,22 @@ const useStyles = makeStyles({
   },
  
   pos: {
-    marginBottom: 12,
+    marginBottom: 5,
   },
-
+  card:{
+    margin:50
+  },
+centerLink:{
+  display:"flex",
+  justifyContent:'center'
+},
+link:{
+  textDecoration:'none'
+},
+button:{
+  border:'1px solid black',
+  backgroundColor:'white'
+}
 });
 
 
@@ -40,37 +53,41 @@ export default function RecipeCard({e}) {
 
   return (
     
-    <Grid container spacing={10} direction="row" justify="center" >
-      <Grid item xs={12}sm={6} >
-        <Card >
+    
+      <Grid item xs={12} sm={6} md={4} >
+        
+        <Card className={classes.card}>
+          
           <CardContent>
-            <Typography variant="h3" component="h2" gutterBottom>
-              Title: {e.name}
+            <Typography variant="h2" component="h2" className={classes.pos} gutterBottom>
+              {e.name}
             </Typography>
-            <Typography variant="h5" component="h3" color="textSecondary">
+            <Typography variant="h5" component="h3" className={classes.pos} >
               Source: {e.source}
             </Typography>
-            <Typography variant="h5" component="h3" className={classes.pos} color="textSecondary">
+            <Typography variant="h5" component="h3" className={classes.pos} >
               Ingredients: {e.ingredients}
             </Typography>
-            <Typography variant="h6" component="p" className={classes.pos}>
+            <Typography variant="h5" component="h5" className={classes.pos}>
               Instructions: {e.instructions}
             </Typography>
-            <Typography variant="h6" component="p">
+            <Typography variant="h5" component="h5">
               Categories: {e.category}
             </Typography>
           </CardContent>
+          <div className={classes.centerLink}>
           <CardActions>
-            <Link to={{
+            <Link className={classes.link} to={{
               pathname: `/recipe/${e.id}`,
               secretRecipe: e
             }} >
-            <Button size="medium">Make changes</Button>
+            <Button className={classes.button} size="medium">Make changes</Button>
             </Link>
           </CardActions>
+          </div>
         </Card>
-      </Grid>
-    </Grid>
+        </Grid>
+    
     
   );
 }

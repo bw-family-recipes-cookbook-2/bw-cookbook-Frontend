@@ -5,8 +5,23 @@ import NavBar from "../components/NavBar";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles({
+button:{
+  border:'1px solid black',
+  backgroundColor:'white',
+  marginTop:'4%',
+  margin: "2%"
+},
+background:{
+  backgroundColor:'#e0f7fa',
+  height:'100vh',
+},
+});
 const SecretRecipe = props => {
+  const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
 
@@ -63,9 +78,10 @@ const SecretRecipe = props => {
   };
 
   return (
-    <div>
+    <div className={classes.background}>
       <NavBar />
       <div>
+      <h1>Edit Secret Recipe</h1>
         <Grid container spacing={2} direction="row" justify="center">
           <Grid item xs={12} sm={6}>
             <form>
@@ -139,14 +155,15 @@ const SecretRecipe = props => {
                 value={recipe.category}
                 onChange={handleChange}
               />
-              <Button size="medium" onClick={handleEdit}>
+              
+              <Button className={classes.button} size="medium" onClick={handleEdit}>
                 Update
               </Button>
-              <Link to="/dashboard">
-                <Button size="medium" onClick={handleDelete}>
+              {/* <Link to="/dashboard"> */}
+                <Button className={classes.button} size="medium" onClick={handleDelete}>
                   Delete
                 </Button>
-              </Link>
+              {/* </Link> */}
             </form>
           </Grid>
         </Grid>

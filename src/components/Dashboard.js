@@ -7,7 +7,32 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { connect } from "react-redux";
 import { fetchRecipes } from "../actions/FetchRecipes";
 
+import { makeStyles } from '@material-ui/core/styles';
+
+
+
+const useStyles = makeStyles({
+  cards: {
+    display: "flex",
+    flexWrap:'wrap',
+    justifyContent:'space-evenly'
+    // justifyContent: "center",
+  },
+title:{
+  fontSize:60
+},
+body:{
+  backgroundColor:'#e0f7fa'
+},
+button:{
+  border:'1px solid black',
+  backgroundColor:'white'
+}
+});
+
 const Dashboard = () => {
+  const classes = useStyles();
+
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
 
@@ -35,16 +60,18 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className={classes.body}>
       <NavBar handleInputChange={handleInputChange} query={query} />
 
       <div>
-        <h1>Secret Family Recipes</h1>
+        <h1 className={classes.title}>Secret Family Recipes</h1>
 
-        <Button href="/rform/">Add Recipe</Button>
-        {recipes.map(e => (
-          <Card e={e} key={e.id} />
-        ))}
+        <Button className={classes.button} href="/rform/">Add Recipe</Button>
+        <div className={classes.cards}>
+          {recipes.map(e => (
+            <Card e={e} key={e.id} />
+          ))}
+        </div>
       </div>
     </div>
   );
