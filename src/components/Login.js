@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.primary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -55,7 +55,10 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    color:'yellow',
+    "&:hover": {
+      backgroundColor: "#e0f7fa",
+    color:'black'
+    }
   },
   username:{
 color:'red',
@@ -117,7 +120,7 @@ const Login = props => {
                 onChange={handleChanges}
                 autoFocus
               />
-              <TextField
+              {/* <TextField
                 variant="outlined"
                 margin="normal"
                 required
@@ -129,7 +132,7 @@ const Login = props => {
                 value={credentials.email}
                 onChange={handleChanges}
                 autoFocus
-              />
+              /> */}
               <TextField
                 variant="outlined"
                 margin="normal"
