@@ -39,11 +39,11 @@ const Dashboard = () => {
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
     const idNum = parseInt(userId);
-    console.log(idNum);
+    // console.log(idNum);
     AxiosWithAuth()
       .get(`api/recipes/user/${idNum}`)
       .then(res => {
-        console.log("this is the recipes", res.data);
+        // console.log("this is the recipes", res.data);
         setRecipes(res.data);
         const recipeResults = res.data.filter(e =>
           e.name.toLowerCase().includes(query.toLowerCase())

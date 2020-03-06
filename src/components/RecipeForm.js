@@ -13,22 +13,21 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-    marginTop: "4%",
-   
+    marginTop: "4%"
   },
 
   tallText: {
     height: 50
   },
-  background:{
-    backgroundColor:'#e0f7fa',
-    height:'100vh',
-    marginTop:"50%"
+  background: {
+    backgroundColor: "#e0f7fa",
+    height: "100vh",
+    marginTop: "50%"
   },
-  button:{
-    border:'1px solid black',
-    backgroundColor:'white',
-    marginTop:'4%'
+  button: {
+    border: "1px solid black",
+    backgroundColor: "white",
+    marginTop: "4%"
   }
 });
 
@@ -46,14 +45,14 @@ const RecipeForm = props => {
 
   const handleChange = event => {
     setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
-    console.log("this is the new recipe", newRecipe);
+    // console.log("this is the new recipe", newRecipe);
   };
 
   const submitRecipe = event => {
     event.preventDefault();
     props.createRecipe(newRecipe);
     history.push("/dashboard");
-    console.log("submit", newRecipe);
+    // console.log("submit", newRecipe);
   };
 
   return (
@@ -61,7 +60,7 @@ const RecipeForm = props => {
       <NavBar />
 
       <div className={classes.root}>
-      <h1>Add Your Secret Recipe</h1>
+        <h1>Add Your Secret Recipe</h1>
         <form onSubmit={submitRecipe}>
           <TextField
             variant="outlined"
@@ -128,7 +127,10 @@ const RecipeForm = props => {
             value={newRecipe.category}
             onChange={handleChange}
           />
-          <Button className={classes.button} type="submit"> Add Recipe </Button>
+          <Button className={classes.button} type="submit">
+            {" "}
+            Add Recipe{" "}
+          </Button>
         </form>
       </div>
     </div>
