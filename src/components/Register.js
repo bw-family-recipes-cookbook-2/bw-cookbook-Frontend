@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.primary.main
   },
   form: {
     width: "100%",
@@ -63,7 +63,10 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "green"
+    "&:hover": {
+      backgroundColor: "#e0f7fa",
+    color:'black'
+    }
   }
 }));
 
